@@ -1,0 +1,19 @@
+name: Test Action main
+on:
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Validate Merge
+        uses: boxboat/Validate-Merge@0.0.1
+        with:
+          ACCEPTABLE_MERGES: |
+            dev -> main
+            main > stage
+            
